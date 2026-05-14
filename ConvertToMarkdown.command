@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-#  IA Helpers - Launcher (macOS)
+#  ConvertToMarkdown - Launcher (macOS)
 #  Activa el entorno virtual y presenta el menu de opciones
 # ============================================================
 
@@ -29,7 +29,7 @@ menu() {
     clear
     echo ""
     echo -e "${GREEN}  +------------------------------------------------------+"
-    echo -e "  |          IA HELPERS  -  Menu Principal               |"
+    echo -e "  |       ConvertToMarkdown  -  Menu Principal           |"
     echo -e "  +------------------------------------------------------+"
     echo -e "  |                                                      |"
     echo -e "  |   [1]  Convertir PDFs a Markdown                     |"

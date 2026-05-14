@@ -1,5 +1,5 @@
 @echo off
-title IA Helpers - Launcher
+title ConvertToMarkdown - Launcher
 color 0A
 
 :: Activar el entorno virtual
@@ -10,7 +10,7 @@ cls
 color 0A
 echo.
 echo  +------------------------------------------------------+
-echo  ^|          IA HELPERS  -  Menu Principal               ^|
+echo  ^|       ConvertToMarkdown  -  Menu Principal           ^|
 echo  +------------------------------------------------------+
 echo  ^|                                                      ^|
 echo  ^|   [1]  Convertir PDFs a Markdown                     ^|

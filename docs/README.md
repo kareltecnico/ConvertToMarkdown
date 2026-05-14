@@ -1,4 +1,4 @@
-# IA Helpers
+# ConvertToMarkdown
 
 Herramienta de automatizacion para convertir archivos PDF a formato Markdown,
 disenada para facilitar el procesamiento de documentos con modelos de lenguaje (IA).
@@ -21,7 +21,7 @@ disenada para facilitar el procesamiento de documentos con modelos de lenguaje (
 
 ## Descripcion del Proyecto
 
-**IA Helpers** convierte documentos PDF a archivos `.md` (Markdown) de forma masiva.
+**ConvertToMarkdown** convierte documentos PDF a archivos `.md` (Markdown) de forma masiva.
 El resultado es texto limpio y estructurado, ideal para ser procesado por modelos de IA,
 herramientas de RAG, pipelines de analisis o cualquier sistema que trabaje con texto plano.
 
@@ -36,10 +36,10 @@ herramientas de RAG, pipelines de analisis o cualquier sistema que trabaje con t
 ## Estructura del Proyecto
 
 ```
-IA Helpers/
+ConvertToMarkdown/
 |
-+-- IA_Helpers.bat       <- Launcher para Windows  (doble clic)
-+-- IA_Helpers.command   <- Launcher para macOS    (doble clic)
++-- ConvertToMarkdown.bat       <- Launcher para Windows  (doble clic)
++-- ConvertToMarkdown.command   <- Launcher para macOS    (doble clic)
 +-- convert_all.py       <- Script de conversion PDF -> Markdown
 |
 +-- input/               <- Coloca aqui los PDFs a convertir
@@ -56,7 +56,7 @@ IA Helpers/
 |---|---|---|
 | Sistema | Windows 10 / 11 | macOS 12 Monterey o superior |
 | Python | 3.10+ (python.org) | 3.10+ (`brew install python`) |
-| Launcher | `IA_Helpers.bat` | `IA_Helpers.command` |
+| Launcher | `ConvertToMarkdown.bat` | `ConvertToMarkdown.command` |
 
 ---
 
@@ -64,7 +64,7 @@ IA Helpers/
 
 ### 1. Copiar el proyecto
 
-Copia la carpeta `IA Helpers` a cualquier ubicacion de tu equipo.
+Copia la carpeta `ConvertToMarkdown` a cualquier ubicacion de tu equipo.
 
 ---
 
@@ -106,7 +106,7 @@ Esto instala la libreria `markitdown` junto con sus motores de lectura de PDF
 Este paso solo se hace una vez despues de copiar el proyecto:
 
 ```bash
-chmod +x "IA_Helpers.command"
+chmod +x "ConvertToMarkdown.command"
 ```
 
 ---
@@ -115,9 +115,9 @@ chmod +x "IA_Helpers.command"
 
 ### Opcion A — Launcher con menu (recomendado)
 
-**Windows:** Doble clic en `IA_Helpers.bat`
+**Windows:** Doble clic en `ConvertToMarkdown.bat`
 
-**macOS:** Doble clic en `IA_Helpers.command`
+**macOS:** Doble clic en `ConvertToMarkdown.command`
 
 > Si macOS bloquea el archivo la primera vez, ve a **Ajustes > Privacidad y Seguridad**
 > y haz clic en **"Abrir de todas formas"**.
@@ -126,7 +126,7 @@ Se abrira una ventana de terminal con el menu:
 
 ```
 +------------------------------------------------------+
-|          IA HELPERS  -  Menu Principal               |
+|       ConvertToMarkdown  -  Menu Principal           |
 +------------------------------------------------------+
 |                                                      |
 |   [1]  Convertir PDFs a Markdown                     |
@@ -164,7 +164,7 @@ python convert_all.py
 
 ## Archivos del Proyecto
 
-### `IA_Helpers.bat` (Windows)
+### `ConvertToMarkdown.bat` (Windows)
 
 Launcher de Windows que:
 - Activa automaticamente el entorno virtual `.venv`
@@ -172,7 +172,7 @@ Launcher de Windows que:
 - Llama a los scripts de Python segun la seleccion del usuario
 - No requiere conocimientos de terminal para operar
 
-### `IA_Helpers.command` (macOS)
+### `ConvertToMarkdown.command` (macOS)
 
 Launcher equivalente para macOS que:
 - Requiere permiso de ejecucion (`chmod +x`) solo la primera vez
@@ -210,7 +210,7 @@ Done: 1 converted, 1 failed.
 |---|---|---|---|
 | El `.bat` se cierra solo | Windows | `.venv` no existe | Crea el entorno y reinstala dependencias |
 | `.command` bloqueado | macOS | Gatekeeper (seguridad) | Ajustes > Privacidad > "Abrir de todas formas" |
-| `.command` no abre Terminal | macOS | Sin permiso de ejecucion | Ejecuta `chmod +x IA_Helpers.command` |
+| `.command` no abre Terminal | macOS | Sin permiso de ejecucion | Ejecuta `chmod +x ConvertToMarkdown.command` |
 | `[ERROR]` al convertir | Ambos | PDF protegido o danado | Verifica que el PDF se abra manualmente |
 | `[WARNING]` contenido vacio | Ambos | PDF escaneado sin OCR | Usa OCR antes de convertir |
 | `markitdown` no encontrado | Ambos | Dependencias no instaladas | Ejecuta `pip install "markitdown[pdf]"` en el `.venv` |

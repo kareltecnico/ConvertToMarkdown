@@ -1,0 +1,24 @@
+# Entorno virtual (no subir, es especifico de cada SO y maquina)
+.venv/
+
+# Archivos de entrada y salida (son datos del usuario, no del proyecto)
+input/*.pdf
+output/*.md
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp

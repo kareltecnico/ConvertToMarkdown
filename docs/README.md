@@ -229,6 +229,17 @@ Done: 1 converted, 1 failed.
 
 ---
 
+## Creditos
+
+Este proyecto esta construido sobre **[MarkItDown](https://github.com/microsoft/markitdown)**,
+una herramienta open source desarrollada por **Microsoft** bajo licencia MIT.
+
+Todo el credito del motor de conversion pertenece al equipo de Microsoft y sus colaboradores.
+Este repositorio unicamente agrega un script de automatizacion masiva y launchers
+con menu interactivo para Windows y macOS.
+
+---
+
 ## Notas
 
 - Los PDFs basados en **imagenes escaneadas** (sin capa de texto) generaran archivos `.md` vacios.

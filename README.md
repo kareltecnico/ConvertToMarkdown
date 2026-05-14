@@ -3,6 +3,9 @@
 > Herramienta de automatizacion para convertir archivos PDF a Markdown,
 > lista para usar con un solo doble clic. Compatible con **Windows** y **macOS**.
 
+> **Basado en [MarkItDown](https://github.com/microsoft/markitdown) de Microsoft.**
+> Este proyecto es un wrapper con interfaz CLI y launchers para facilitar su uso diario.
+
 ---
 
 ## Que hace?
@@ -80,9 +83,22 @@ solucion de problemas y referencia de archivos.
 
 ---
 
+## Creditos
+
+Este proyecto esta construido sobre **[MarkItDown](https://github.com/microsoft/markitdown)**,
+una herramienta open source desarrollada por **Microsoft**.
+
+Todo el credito del motor de conversion pertenece al equipo de Microsoft y sus colaboradores.
+Este repositorio unicamente agrega:
+- Un script de conversion masiva (`convert_all.py`)
+- Launchers con menu interactivo para Windows (`.bat`) y macOS (`.command`)
+- Documentacion de uso en espanol
+
+---
+
 ## Dependencias
 
-- [markitdown](https://github.com/microsoft/markitdown) — Motor de conversion de Microsoft
+- [markitdown](https://github.com/microsoft/markitdown) — Motor de conversion (Microsoft, MIT License)
 - pdfminer-six, pdfplumber, pypdfium2 — Motores de lectura de PDF
 
 ---
@@ -90,3 +106,4 @@ solucion de problemas y referencia de archivos.
 ## Licencia
 
 MIT — Libre para uso personal y comercial.
+Recuerda respetar la licencia original de [MarkItDown (MIT)](https://github.com/microsoft/markitdown/blob/main/LICENSE).

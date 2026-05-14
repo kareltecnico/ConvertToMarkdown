@@ -63,7 +63,7 @@ while true; do
             echo "   Proceso finalizado."
             echo -e "  ================================================${RESET}"
             echo ""
-            read -p "  Presiona Enter para volver al menu..."
+            exit 0
             ;;
 
         2)

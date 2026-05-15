@@ -2,8 +2,12 @@
 .venv/
 
 # Archivos de entrada y salida (son datos del usuario, no del proyecto)
-input/*.pdf
-output/*.md
+input/**
+!input/
+!input/README.md
+output/**
+!output/
+!output/README.md
 
 # Python cache
 __pycache__/

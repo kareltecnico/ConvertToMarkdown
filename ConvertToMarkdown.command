@@ -44,6 +44,10 @@ menu() {
     echo -e "  |                                                      |"
     echo -e "  |   [3]  Abrir carpeta OUTPUT (Markdown generados)     |"
     echo -e "  |                                                      |"
+    echo -e "  |   [4]  Limpiar carpeta INPUT                         |"
+    echo -e "  |                                                      |"
+    echo -e "  |   [5]  Limpiar carpeta OUTPUT                        |"
+    echo -e "  |                                                      |"
     echo -e "  |   [0]  Salir                                         |"
     echo -e "  |                                                      |"
     echo -e "  +------------------------------------------------------+${RESET}"
@@ -78,6 +82,40 @@ while true; do
 
         3)
             open "$(pwd)/output"
+            ;;
+
+        4)
+            clear
+            echo -e "${YELLOW}"
+            echo "  ================================================"
+            echo "   Limpiar carpeta INPUT"
+            echo "  ================================================"
+            echo -e "${RESET}"
+            read -p "  Esto borrara tus archivos de entrada. Continuar? [s/N]: " CONFIRMAR
+            if [[ "$CONFIRMAR" =~ ^[sS]$ ]]; then
+                python clean_folder.py input
+            else
+                echo "  Operacion cancelada."
+            fi
+            echo ""
+            read -p "  Presiona Enter para volver al menu..."
+            ;;
+
+        5)
+            clear
+            echo -e "${YELLOW}"
+            echo "  ================================================"
+            echo "   Limpiar carpeta OUTPUT"
+            echo "  ================================================"
+            echo -e "${RESET}"
+            read -p "  Esto borrara los Markdown generados y reportes. Continuar? [s/N]: " CONFIRMAR
+            if [[ "$CONFIRMAR" =~ ^[sS]$ ]]; then
+                python clean_folder.py output
+            else
+                echo "  Operacion cancelada."
+            fi
+            echo ""
+            read -p "  Presiona Enter para volver al menu..."
             ;;
 
         0)

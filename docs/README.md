@@ -24,6 +24,8 @@ disenada para facilitar el procesamiento de documentos con modelos de lenguaje (
 **ConvertToMarkdown** convierte documentos y otros archivos soportados a archivos `.md` (Markdown) de forma masiva.
 El resultado es texto limpio y estructurado, ideal para ser procesado por modelos de IA,
 herramientas de RAG, pipelines de analisis o cualquier sistema que trabaje con texto plano.
+El script procesa subcarpetas, omite archivos que no cambiaron desde la ultima conversion
+y genera un reporte de ejecucion en `output/conversion_report.txt`.
 
 **Casos de uso tipicos:**
 
@@ -41,6 +43,8 @@ ConvertToMarkdown/
 +-- ConvertToMarkdown.bat       <- Launcher para Windows  (doble clic)
 +-- ConvertToMarkdown.command   <- Launcher para macOS    (doble clic)
 +-- convert_all.py       <- Script de conversion a Markdown
++-- clean_folder.py      <- Script para limpiar input/output con seguridad
++-- requirements.txt     <- Dependencias recomendadas
 |
 +-- input/               <- Coloca aqui los archivos a convertir
 +-- output/              <- Los archivos .md generados aparecen aqui
@@ -88,12 +92,16 @@ python3 -m venv .venv
 ```powershell
 .\.venv\Scripts\Activate
 pip install "markitdown[pdf,docx,pptx,xlsx,xls,outlook,audio-transcription]"
+# o, recomendado:
+pip install -r requirements.txt
 ```
 
 **macOS:**
 ```bash
 source .venv/bin/activate
 pip install "markitdown[pdf,docx,pptx,xlsx,xls,outlook,audio-transcription]"
+# o, recomendado:
+pip install -r requirements.txt
 ```
 
 Esto instala la libreria `markitdown` junto con dependencias para PDF, Word,
@@ -135,6 +143,10 @@ Se abrira una ventana de terminal con el menu:
 |                                                      |
 |   [3]  Abrir carpeta OUTPUT (Markdown generados)     |
 |                                                      |
+|   [4]  Limpiar carpeta INPUT                         |
+|                                                      |
+|   [5]  Limpiar carpeta OUTPUT                        |
+|                                                      |
 |   [0]  Salir                                         |
 |                                                      |
 +------------------------------------------------------+
@@ -148,6 +160,9 @@ Se abrira una ventana de terminal con el menu:
 
 En macOS, la opcion `0` cierra automaticamente la ventana de Terminal abierta por
 `ConvertToMarkdown.command`.
+
+Las opciones `4` y `5` limpian `input/` y `output/` respectivamente, siempre con
+confirmacion previa. Se conservan los archivos `README.md` de esas carpetas.
 
 ---
 
@@ -191,11 +206,13 @@ Launcher equivalente para macOS que:
 
 Script principal de conversion. Realiza las siguientes operaciones:
 
-1. Escanea la carpeta `input/` en busca de archivos soportados
+1. Escanea la carpeta `input/` y sus subcarpetas en busca de archivos soportados
 2. Convierte cada archivo a texto usando la API de `MarkItDown`
-3. Valida que el contenido no este vacio antes de guardar
-4. Guarda el resultado como archivo `.md` en la carpeta `output/`
-5. Reporta el estado de cada archivo: `[OK]`, `[WARNING]` o `[ERROR]`
+3. Omite archivos que no cambiaron desde la ultima conversion
+4. Valida que el contenido no este vacio antes de guardar
+5. Guarda el resultado como archivo `.md` en la carpeta `output/`, manteniendo subcarpetas
+6. Genera `output/conversion_report.txt`
+7. Reporta el estado de cada archivo: `[OK]`, `[SKIPPED]`, `[WARNING]` o `[ERROR]`
 
 **Ejemplo de salida:**
 
@@ -205,8 +222,18 @@ Converting: REPORTE_001.xlsx
 Converting: DOCUMENTO_VACIO.pdf
   [WARNING] Empty output for: DOCUMENTO_VACIO.pdf
 
-Done: 1 converted, 1 failed.
+Converted: 1
+Skipped: 0
+Failed: 1
+Output folder: /ruta/ConvertToMarkdown/output
+Report: /ruta/ConvertToMarkdown/output/conversion_report.txt
 ```
+
+### `clean_folder.py`
+
+Script de limpieza usado por el menu. Permite limpiar:
+- `input/`, conservando `input/README.md`
+- `output/`, conservando `output/README.md`
 
 ---
 

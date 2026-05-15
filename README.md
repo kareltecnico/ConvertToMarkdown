@@ -12,6 +12,8 @@
 
 Convierte los archivos soportados de la carpeta `input/` a archivos `.md` en `output/`.
 El resultado es texto limpio ideal para pipelines de IA, RAG o analisis de documentos.
+Tambien procesa subcarpetas, omite archivos que no cambiaron desde la ultima conversion
+y genera un reporte en `output/conversion_report.txt`.
 
 Formatos soportados por MarkItDown incluyen PDF, Word, PowerPoint, Excel, imagenes,
 audio, HTML, CSV, JSON, XML, ZIP, EPUB y mas. La compatibilidad exacta depende de
@@ -32,6 +34,8 @@ cd ConvertToMarkdown
 python -m venv .venv
 .\.venv\Scripts\Activate
 pip install "markitdown[pdf,docx,pptx,xlsx,xls,outlook,audio-transcription]"
+# o, recomendado:
+pip install -r requirements.txt
 
 # 3. Doble clic en ConvertToMarkdown.bat
 ```
@@ -47,6 +51,8 @@ cd ConvertToMarkdown
 python3 -m venv .venv
 source .venv/bin/activate
 pip install "markitdown[pdf,docx,pptx,xlsx,xls,outlook,audio-transcription]"
+# o, recomendado:
+pip install -r requirements.txt
 
 # 3. Dar permiso al launcher (solo la primera vez)
 chmod +x ConvertToMarkdown.command
@@ -67,6 +73,10 @@ chmod +x ConvertToMarkdown.command
 En macOS, la opcion `0` cierra automaticamente la ventana de Terminal abierta por
 `ConvertToMarkdown.command`.
 
+Opciones utiles del menu:
+- `4`: limpiar `input/` conservando `input/README.md`
+- `5`: limpiar `output/` conservando `output/README.md`
+
 ---
 
 ## Estructura
@@ -76,6 +86,8 @@ ConvertToMarkdown/
 +-- ConvertToMarkdown.bat       <- Launcher Windows
 +-- ConvertToMarkdown.command   <- Launcher macOS
 +-- convert_all.py       <- Script de conversion
++-- clean_folder.py      <- Limpieza segura de input/output
++-- requirements.txt     <- Dependencias recomendadas
 +-- input/               <- Archivos de entrada (ignorados por git)
 +-- output/              <- Markdowns de salida (ignorados por git)
 +-- docs/
@@ -99,6 +111,7 @@ una herramienta open source desarrollada por **Microsoft**.
 Todo el credito del motor de conversion pertenece al equipo de Microsoft y sus colaboradores.
 Este repositorio unicamente agrega:
 - Un script de conversion masiva (`convert_all.py`)
+- Un script de limpieza segura (`clean_folder.py`)
 - Launchers con menu interactivo para Windows (`.bat`) y macOS (`.command`)
 - Documentacion de uso en espanol
 

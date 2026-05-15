@@ -142,7 +142,12 @@ Se abrira una ventana de terminal con el menu:
 
 1. Coloca tus archivos en la carpeta `input/`
 2. Presiona `1` y Enter para iniciar la conversion
-3. Los archivos `.md` apareceran en la carpeta `output/`
+3. Revisa el resultado y presiona Enter para volver al menu
+4. Los archivos `.md` apareceran en la carpeta `output/`
+5. Presiona `0` para salir
+
+En macOS, la opcion `0` cierra automaticamente la ventana de Terminal abierta por
+`ConvertToMarkdown.command`.
 
 ---
 
@@ -180,6 +185,7 @@ Launcher equivalente para macOS que:
 - Presenta el mismo menu con colores ANSI en Terminal.app
 - Verifica que el `.venv` exista y muestra instrucciones si no esta configurado
 - Usa `open` para abrir carpetas en Finder
+- Cierra automaticamente la ventana de Terminal al elegir `0`
 
 ### `convert_all.py`
 

@@ -61,7 +61,11 @@ chmod +x ConvertToMarkdown.command
 1. Copia tus archivos a la carpeta `input/`
 2. Abre el launcher (`ConvertToMarkdown.bat` en Windows / `ConvertToMarkdown.command` en Mac)
 3. Presiona `1` para iniciar la conversion
-4. Los archivos `.md` apareceran en `output/`
+4. Presiona Enter al finalizar para volver al menu
+5. Los archivos `.md` apareceran en `output/`
+
+En macOS, la opcion `0` cierra automaticamente la ventana de Terminal abierta por
+`ConvertToMarkdown.command`.
 
 ---
 

@@ -14,6 +14,12 @@ YELLOW="\033[1;33m"
 RED="\033[0;31m"
 RESET="\033[0m"
 
+close_terminal_window() {
+    if [ "${TERM_PROGRAM:-}" = "Apple_Terminal" ]; then
+        (sleep 0.2; osascript -e 'tell application "Terminal" to close front window') >/dev/null 2>&1 &
+    fi
+}
+
 # Activar el entorno virtual
 if [ -f ".venv/bin/activate" ]; then
     source ".venv/bin/activate"
@@ -79,6 +85,7 @@ while true; do
             echo ""
             echo "  Hasta luego!"
             echo ""
+            close_terminal_window
             exit 0
             ;;
 

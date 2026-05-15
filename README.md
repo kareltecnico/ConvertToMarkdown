@@ -23,6 +23,11 @@ las dependencias opcionales instaladas.
 
 ## Inicio Rapido
 
+### Para usuarios no tecnicos
+
+Si no usas Git ni terminal todos los dias, empieza por la
+[Guia facil para usuarios](GUIA_FACIL.md).
+
 ### Windows
 
 ```powershell
@@ -100,6 +105,9 @@ ConvertToMarkdown/
 
 Ver [docs/README.md](docs/README.md) para instrucciones detalladas de instalacion,
 solucion de problemas y referencia de archivos.
+
+Ver [GUIA_FACIL.md](GUIA_FACIL.md) para instrucciones paso a paso pensadas para
+usuarios no tecnicos.
 
 ---
 

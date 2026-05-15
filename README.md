@@ -1,6 +1,6 @@
-# ConvertToMarkdown - PDF to Markdown Converter
+# ConvertToMarkdown - File to Markdown Converter
 
-> Herramienta de automatizacion para convertir archivos PDF a Markdown,
+> Herramienta de automatizacion para convertir archivos compatibles con MarkItDown a Markdown,
 > lista para usar con un solo doble clic. Compatible con **Windows** y **macOS**.
 
 > **Basado en [MarkItDown](https://github.com/microsoft/markitdown) de Microsoft.**
@@ -10,8 +10,12 @@
 
 ## Que hace?
 
-Convierte todos los PDFs de la carpeta `input/` a archivos `.md` en `output/`.
+Convierte los archivos soportados de la carpeta `input/` a archivos `.md` en `output/`.
 El resultado es texto limpio ideal para pipelines de IA, RAG o analisis de documentos.
+
+Formatos soportados por MarkItDown incluyen PDF, Word, PowerPoint, Excel, imagenes,
+audio, HTML, CSV, JSON, XML, ZIP, EPUB y mas. La compatibilidad exacta depende de
+las dependencias opcionales instaladas.
 
 ---
 
@@ -27,7 +31,7 @@ cd ConvertToMarkdown
 # 2. Crear entorno virtual e instalar dependencias
 python -m venv .venv
 .\.venv\Scripts\Activate
-pip install "markitdown[pdf]"
+pip install "markitdown[pdf,docx,pptx,xlsx,xls,outlook,audio-transcription]"
 
 # 3. Doble clic en ConvertToMarkdown.bat
 ```
@@ -42,7 +46,7 @@ cd ConvertToMarkdown
 # 2. Crear entorno virtual e instalar dependencias
 python3 -m venv .venv
 source .venv/bin/activate
-pip install "markitdown[pdf]"
+pip install "markitdown[pdf,docx,pptx,xlsx,xls,outlook,audio-transcription]"
 
 # 3. Dar permiso al launcher (solo la primera vez)
 chmod +x ConvertToMarkdown.command
@@ -54,7 +58,7 @@ chmod +x ConvertToMarkdown.command
 
 ## Uso
 
-1. Copia tus PDFs a la carpeta `input/`
+1. Copia tus archivos a la carpeta `input/`
 2. Abre el launcher (`ConvertToMarkdown.bat` en Windows / `ConvertToMarkdown.command` en Mac)
 3. Presiona `1` para iniciar la conversion
 4. Los archivos `.md` apareceran en `output/`
@@ -68,7 +72,7 @@ ConvertToMarkdown/
 +-- ConvertToMarkdown.bat       <- Launcher Windows
 +-- ConvertToMarkdown.command   <- Launcher macOS
 +-- convert_all.py       <- Script de conversion
-+-- input/               <- PDFs de entrada (ignorados por git)
++-- input/               <- Archivos de entrada (ignorados por git)
 +-- output/              <- Markdowns de salida (ignorados por git)
 +-- docs/
     +-- README.md        <- Documentacion completa
@@ -100,6 +104,7 @@ Este repositorio unicamente agrega:
 
 - [markitdown](https://github.com/microsoft/markitdown) — Motor de conversion (Microsoft, MIT License)
 - pdfminer-six, pdfplumber, pypdfium2 — Motores de lectura de PDF
+- mammoth, python-pptx, openpyxl, pandas, xlrd — Lectura de Office y hojas de calculo
 
 ---
 

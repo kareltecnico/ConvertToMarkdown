@@ -1,6 +1,6 @@
 # ConvertToMarkdown
 
-Herramienta de automatizacion para convertir archivos PDF a formato Markdown,
+Herramienta de automatizacion para convertir archivos compatibles con MarkItDown a formato Markdown,
 disenada para facilitar el procesamiento de documentos con modelos de lenguaje (IA).
 
 **Compatible con Windows y macOS.**
@@ -21,13 +21,13 @@ disenada para facilitar el procesamiento de documentos con modelos de lenguaje (
 
 ## Descripcion del Proyecto
 
-**ConvertToMarkdown** convierte documentos PDF a archivos `.md` (Markdown) de forma masiva.
+**ConvertToMarkdown** convierte documentos y otros archivos soportados a archivos `.md` (Markdown) de forma masiva.
 El resultado es texto limpio y estructurado, ideal para ser procesado por modelos de IA,
 herramientas de RAG, pipelines de analisis o cualquier sistema que trabaje con texto plano.
 
 **Casos de uso tipicos:**
 
-- Extraer texto de contratos, planos, reportes o facturas en PDF
+- Extraer texto de contratos, planos, reportes, facturas, hojas de calculo y presentaciones
 - Preparar documentos para embeddings o busqueda semantica
 - Automatizar la ingesta de archivos en flujos de trabajo con IA
 
@@ -40,9 +40,9 @@ ConvertToMarkdown/
 |
 +-- ConvertToMarkdown.bat       <- Launcher para Windows  (doble clic)
 +-- ConvertToMarkdown.command   <- Launcher para macOS    (doble clic)
-+-- convert_all.py       <- Script de conversion PDF -> Markdown
++-- convert_all.py       <- Script de conversion a Markdown
 |
-+-- input/               <- Coloca aqui los PDFs a convertir
++-- input/               <- Coloca aqui los archivos a convertir
 +-- output/              <- Los archivos .md generados aparecen aqui
 +-- docs/                <- Documentacion del proyecto
 +-- .venv/               <- Entorno virtual de Python (dependencias)
@@ -87,17 +87,17 @@ python3 -m venv .venv
 **Windows:**
 ```powershell
 .\.venv\Scripts\Activate
-pip install "markitdown[pdf]"
+pip install "markitdown[pdf,docx,pptx,xlsx,xls,outlook,audio-transcription]"
 ```
 
 **macOS:**
 ```bash
 source .venv/bin/activate
-pip install "markitdown[pdf]"
+pip install "markitdown[pdf,docx,pptx,xlsx,xls,outlook,audio-transcription]"
 ```
 
-Esto instala la libreria `markitdown` junto con sus motores de lectura de PDF
-(`pdfminer-six`, `pdfplumber`, `pypdfium2`).
+Esto instala la libreria `markitdown` junto con dependencias para PDF, Word,
+PowerPoint, Excel, mensajes de Outlook y audio.
 
 ---
 
@@ -129,9 +129,9 @@ Se abrira una ventana de terminal con el menu:
 |       ConvertToMarkdown  -  Menu Principal           |
 +------------------------------------------------------+
 |                                                      |
-|   [1]  Convertir PDFs a Markdown                     |
+|   [1]  Convertir archivos a Markdown                 |
 |                                                      |
-|   [2]  Abrir carpeta INPUT  (PDFs de entrada)        |
+|   [2]  Abrir carpeta INPUT  (archivos de entrada)    |
 |                                                      |
 |   [3]  Abrir carpeta OUTPUT (Markdown generados)     |
 |                                                      |
@@ -140,7 +140,7 @@ Se abrira una ventana de terminal con el menu:
 +------------------------------------------------------+
 ```
 
-1. Coloca tus PDFs en la carpeta `input/`
+1. Coloca tus archivos en la carpeta `input/`
 2. Presiona `1` y Enter para iniciar la conversion
 3. Los archivos `.md` apareceran en la carpeta `output/`
 
@@ -185,8 +185,8 @@ Launcher equivalente para macOS que:
 
 Script principal de conversion. Realiza las siguientes operaciones:
 
-1. Escanea la carpeta `input/` en busca de archivos `.pdf`
-2. Convierte cada PDF a texto usando la API de `MarkItDown`
+1. Escanea la carpeta `input/` en busca de archivos soportados
+2. Convierte cada archivo a texto usando la API de `MarkItDown`
 3. Valida que el contenido no este vacio antes de guardar
 4. Guarda el resultado como archivo `.md` en la carpeta `output/`
 5. Reporta el estado de cada archivo: `[OK]`, `[WARNING]` o `[ERROR]`
@@ -194,10 +194,10 @@ Script principal de conversion. Realiza las siguientes operaciones:
 **Ejemplo de salida:**
 
 ```
-Converting: CONTRATO_001.pdf
-  [OK] Saved: CONTRATO_001.md
-Converting: REPORTE_VACIO.pdf
-  [WARNING] Empty output for: REPORTE_VACIO.pdf
+Converting: REPORTE_001.xlsx
+  [OK] Saved: REPORTE_001.md
+Converting: DOCUMENTO_VACIO.pdf
+  [WARNING] Empty output for: DOCUMENTO_VACIO.pdf
 
 Done: 1 converted, 1 failed.
 ```
@@ -211,9 +211,9 @@ Done: 1 converted, 1 failed.
 | El `.bat` se cierra solo | Windows | `.venv` no existe | Crea el entorno y reinstala dependencias |
 | `.command` bloqueado | macOS | Gatekeeper (seguridad) | Ajustes > Privacidad > "Abrir de todas formas" |
 | `.command` no abre Terminal | macOS | Sin permiso de ejecucion | Ejecuta `chmod +x ConvertToMarkdown.command` |
-| `[ERROR]` al convertir | Ambos | PDF protegido o danado | Verifica que el PDF se abra manualmente |
-| `[WARNING]` contenido vacio | Ambos | PDF escaneado sin OCR | Usa OCR antes de convertir |
-| `markitdown` no encontrado | Ambos | Dependencias no instaladas | Ejecuta `pip install "markitdown[pdf]"` en el `.venv` |
+| `[ERROR]` al convertir | Ambos | Archivo protegido, danado o formato no soportado | Verifica que el archivo se abra manualmente |
+| `[WARNING]` contenido vacio | Ambos | Archivo sin texto extraible o escaneado sin OCR | Usa OCR antes de convertir |
+| `markitdown` no encontrado | Ambos | Dependencias no instaladas | Ejecuta `pip install "markitdown[pdf,docx,pptx,xlsx,xls,outlook,audio-transcription]"` en el `.venv` |
 
 ---
 
@@ -225,7 +225,8 @@ Done: 1 converted, 1 failed.
 | `pdfminer-six` | 20251230 | Extraccion de texto de PDF |
 | `pdfplumber` | 0.11.9 | Lectura estructurada de PDF |
 | `pypdfium2` | 5.8.0 | Renderizado de paginas PDF |
-| `Pillow` | 9.1+ | Procesamiento de imagenes en PDF |
+| `Pillow` | 9.1+ | Procesamiento de imagenes |
+| `mammoth`, `python-pptx`, `openpyxl`, `pandas`, `xlrd` | segun MarkItDown | Lectura de Office y hojas de calculo |
 
 ---
 
@@ -242,7 +243,7 @@ con menu interactivo para Windows y macOS.
 
 ## Notas
 
-- Los PDFs basados en **imagenes escaneadas** (sin capa de texto) generaran archivos `.md` vacios.
+- Los archivos basados en **imagenes escaneadas** (sin capa de texto) pueden generar archivos `.md` vacios.
   Para estos casos se recomienda aplicar OCR previamente (por ejemplo con `tesseract` o Adobe Acrobat).
-- El script procesa **todos los PDFs** que encuentre en `input/` en cada ejecucion.
+- El script procesa **todos los archivos soportados** que encuentre en `input/` en cada ejecucion.
   Si no deseas reconvertir un archivo, retiralo de la carpeta antes de ejecutar.

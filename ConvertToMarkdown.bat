@@ -50,7 +50,8 @@ echo  ================================================
 echo   Proceso finalizado.
 echo  ================================================
 echo.
-exit /b 0
+pause
+goto MENU
 
 :ABRIR_INPUT
 explorer "%~dp0input"

@@ -19,7 +19,7 @@ if [ -f ".venv/bin/activate" ]; then
     source ".venv/bin/activate"
 else
     echo -e "${RED}[ERROR] No se encontro el entorno virtual (.venv).${RESET}"
-    echo "Ejecuta primero: python3 -m venv .venv && .venv/bin/pip install markitdown[pdf]"
+    echo "Ejecuta primero: python3 -m venv .venv && .venv/bin/pip install markitdown[pdf,docx,pptx,xlsx,xls,outlook,audio-transcription]"
     echo ""
     read -p "Presiona Enter para salir..."
     exit 1
@@ -32,9 +32,9 @@ menu() {
     echo -e "  |       ConvertToMarkdown  -  Menu Principal           |"
     echo -e "  +------------------------------------------------------+"
     echo -e "  |                                                      |"
-    echo -e "  |   [1]  Convertir PDFs a Markdown                     |"
+    echo -e "  |   [1]  Convertir archivos a Markdown                 |"
     echo -e "  |                                                      |"
-    echo -e "  |   [2]  Abrir carpeta INPUT  (PDFs de entrada)        |"
+    echo -e "  |   [2]  Abrir carpeta INPUT  (archivos de entrada)    |"
     echo -e "  |                                                      |"
     echo -e "  |   [3]  Abrir carpeta OUTPUT (Markdown generados)     |"
     echo -e "  |                                                      |"
@@ -54,7 +54,7 @@ while true; do
             clear
             echo -e "${CYAN}"
             echo "  ================================================"
-            echo "   Convirtiendo PDFs a Markdown..."
+            echo "   Convirtiendo archivos a Markdown..."
             echo "  ================================================"
             echo -e "${RESET}"
             python convert_all.py
@@ -63,7 +63,7 @@ while true; do
             echo "   Proceso finalizado."
             echo -e "  ================================================${RESET}"
             echo ""
-            exit 0
+            read -p "  Presiona Enter para volver al menu..."
             ;;
 
         2)
